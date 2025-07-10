@@ -17,7 +17,7 @@ jobs:
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
       - name: Build Docker image for testing
-        run: docker build -t ghcr.io/${{ github.actor | toLower }}/nodecloudops-test -f Dockerfile.dev .
+        run: docker build -t ghcr.io/keshavdesai24/nodecloudops-test -f Dockerfile.dev .
 
       - name: Run tests inside Docker container
-        run: docker run --rm ghcr.io/${{ github.actor }}/nodecloudops-test npm test
+        run: docker run --rm ghcr.io/keshavdesai24/nodecloudops-test npm test

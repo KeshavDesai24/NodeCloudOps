@@ -21,3 +21,24 @@ jobs:
 
       - name: Run tests inside Docker container
         run: docker run --rm ghcr.io/keshavdesai24/nodecloudops-test npm test -- --coverage --watchAll=false 
+
+
+      - name: Generate deployment package
+        run: zip -r deploy.zip . -x '*.git*' 'node_modules/*' 'Dockerfile*' '*.zip'
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-south-1
+
+      - name: Deploy to Elastic Beanstalk
+        uses: einaregilsson/beanstalk-deploy@v18
+        with:
+          application_name: NodeCloudOps
+          environment_name: NodeCloudOps-env
+          existing_bucket_name: elasticbeanstalk-ap-south-1-640168441927
+          region: ap-south-1
+          version_label: ${{ github.sha }}
+          deployment_package: deploy.zip

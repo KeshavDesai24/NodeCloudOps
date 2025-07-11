@@ -8,6 +8,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    environment: NodeCloudOps-Prod
 
     steps:
       - name: Checkout source code

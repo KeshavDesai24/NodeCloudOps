@@ -1,10 +1,10 @@
-FROM node:16-alpine as builder
-WORKDIR '/app'
+FROM node:16-alpine AS builder
+WORKDIR /app
 COPY package.json .
-RUN npm install
+RUN npm install --force
 COPY . .
 RUN npm run build
 
-# /app/build --> folder imp for prod env
-FROM nginx
+FROM nginx:stable-alpine
 COPY --from=builder /app/build /usr/share/nginx/html
+EXPOSE 80

@@ -7,7 +7,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Hello Developers, Welcome to NodeCloudOps!
+          Hello Developers, Welcome to NodeCloudOps.
         </p>
         <a
           className="App-link"

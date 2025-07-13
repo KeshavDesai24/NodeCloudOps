@@ -1,9 +1,10 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 
 function App() {
   return (
-    <div className="container text-center py-5">
+    <div className="App-header container text-center py-5">
       <h1 className="display-4 mb-3">🚀 NodeCloudOps</h1>
       <p className="lead mb-4">
         End-to-end CI/CD pipeline deploying a React app to AWS Elastic Beanstalk with Docker & GitHub Actions.

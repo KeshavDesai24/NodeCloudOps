@@ -9,7 +9,7 @@ While the frontend is intentionally simple, the real magic is in the **infrastru
 ✅ Deploy to AWS Elastic Beanstalk  
 ✅ All triggered automatically on push to `main`
 
----
+------------------------------------------------------------------------------------
 
 ## 🌱 Why minimal frontend?
 
@@ -21,7 +21,7 @@ It’s about **real‑world DevOps**:
 
 > ⚡ *Focus is on reliability, automation & CI/CD best practices — not UI complexity.*
 
----
+---------------------------------------------------------------------------------------
 
 ## 🐳 Tech stack
 
@@ -34,17 +34,49 @@ It’s about **real‑world DevOps**:
 | Cloud            | AWS Elastic Beanstalk (Single Docker)   
 | Registry         | GitHub Container Registry (GHCR)         
 
----
+----------------------------------------------------------------------------------------
 
 ## ⚙️ CI/CD pipeline overview
 
 > From `git push` → live on AWS in minutes, fully automated.
 
-```mermaid
-graph TD
   A[Push to main] --> B[GitHub Actions]
   B --> C[Run tests inside Docker]
   C --> D[Build prod Docker image]
   D --> E[Upload build artifact to S3]
   E --> F[Deploy to Elastic Beanstalk]
   F --> G[Public URL]
+
+---------------------------------------------------------------------------------------------
+
+🧹 Environment cleanup (cost saving)
+
+After successfully testing the full CI/CD pipeline and deploying the app to **AWS Elastic Beanstalk**,  
+I deleted the live environment and related AWS resources to **avoid unnecessary billing**.
+
+Cleaned resources:
+- Elastic Beanstalk application & environment
+- S3 deployment buckets
+- CloudWatch logs
+- Load balancer & auto scaling group
+- VPC (if custom)
+- EC2 instance
+
+> ⚠️ **Note:** Since the Elastic Beanstalk environment no longer exists,  
+> further commits (like this README) will cause the deploy step in GitHub Actions to **fail as expected**.  
+> This is intentional — the pipeline worked perfectly during actual deployment,  
+> and screenshots are included as proof.
+
+By doing this, the project remains cost‑free yet fully demonstrates:
+- End‑to‑end automation
+- Production‑ready deployment flow
+- Cloud resource management & teardown best practices
+
+---------------------------------------------------------------------------------------
+
+✅ Final note
+
+The real goal: **showing DevOps skills, not running a permanent paid service**.  
+Pipeline logs & screenshots prove it was deployed live.  
+Clean, automated, cost‑aware — just like it should be.
+
